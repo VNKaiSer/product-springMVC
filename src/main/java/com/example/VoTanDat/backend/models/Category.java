@@ -1,10 +1,7 @@
-package com.example.VoTanDat.backend.model;
+package com.example.VoTanDat.backend.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -21,6 +18,15 @@ public class Category {
     private long id;
     private String name;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     List<Product> products;
+
+    public Category(long id){
+        this.id = id;
+    }
+
+    public Category(int i, String s) {
+        this.id = i;
+        this.name = s;
+    }
 }
